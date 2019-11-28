@@ -1,0 +1,48 @@
+form{
+    border: 1px solid black;
+    width: 319px;
+    height: 334px;
+    margin: 100px 250px 650px 450px;
+    text-align: center;
+    font-size: 15px;
+    font-family: cursive;
+    border-radius: 25px;
+     background-image: url(/image/giphy.gif); 
+    background-size: cover;
+    color : white;
+    
+
+}
+body{
+    background-image: url(../image/table-bay-harbour-3541607__340.jpg);
+    background-size: cover;
+}
+input[type="text"], input[type="password"]{
+    width: 225px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
+    
+}
+
+input[type="submit"]{
+    margin-top: 20px;
+    padding:10px 20px;
+    border-radius: 50px;
+    background-color: rgb(38, 0, 255,0.5);
+    outline: none;
+    color: white;
+
+}
+input[type="submit"]:hover{
+    background-color: green;
+}
+.black{
+    color:rgb(0, 0, 0);
+    color: white;
+}
+
+
+
