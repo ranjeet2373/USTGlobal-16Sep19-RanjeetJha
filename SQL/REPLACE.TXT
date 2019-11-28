@@ -1,0 +1,168 @@
+SQL> SELECT REPLACE('QSPIDERS','Q','J')
+  2  FROM DUAL;
+
+REPLACE(                                                                                                                
+--------                                                                                                                
+JSPIDERS                                                                                                                
+
+SQL> SELECT REPLACE('QSPIDERS','QS','J')
+  2  FROM DUAL;
+
+REPLACE                                                                                                                 
+-------                                                                                                                 
+JPIDERS                                                                                                                 
+
+SQL> SELECT REPLACE('QSPIDERS','Q','JW')
+  2  FROM DUAL;
+
+REPLACE('                                                                                                               
+---------                                                                                                               
+JWSPIDERS                                                                                                               
+
+SQL> SELECT REPLACE('QSPIDERS','S','M')
+  2  FROM DUAL;
+
+REPLACE(                                                                                                                
+--------                                                                                                                
+QMPIDERM                                                                                                                
+
+SQL> SELECT REPLACE('QSPIDERS','SP')
+  2  FROM DUAL;
+
+REPLAC                                                                                                                  
+------                                                                                                                  
+QIDERS                                                                                                                  
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE
+  4  
+SQL> SELECT LTRIM('AAQSPIDER','A')
+  2  FROM DUAL;
+
+LTRIM('                                                                                                                 
+-------                                                                                                                 
+QSPIDER                                                                                                                 
+
+SQL> SELECT LTRIM('         SQL         ',' ')
+  2  FROM DUAL;
+
+LTRIM('SQL',                                                                                                            
+------------                                                                                                            
+SQL                                                                                                                     
+
+SQL> SELECT LTRIM('EEEWERCOME','WE')
+  2  FROM DUAL;
+
+LTRIM                                                                                                                   
+-----                                                                                                                   
+RCOME                                                                                                                   
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE ;
+WHERE 
+     *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT RTRIM('DHEERAJJJJ','J')
+  2  FROM DUAL;
+
+RTRIM(                                                                                                                  
+------                                                                                                                  
+DHEERA                                                                                                                  
+
+SQL> SELECT LTRIM('    SQL    ')
+  2  FROM DUAL;
+
+LTRIM('                                                                                                                 
+-------                                                                                                                 
+SQL                                                                                                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT RTRIM('    SQL    ')
+  2* FROM DUAL
+SQL> /
+
+RTRIM('                                                                                                                 
+-------                                                                                                                 
+    SQL                                                                                                                 
+
+SQL> SELECT LTRIM('   SQL  ')
+  2  AND RTRIM ('SQL  ')
+  3  FROM DUAL;
+AND RTRIM ('SQL  ')
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT TRIM('EEWELCOME','E')
+  2  FROM DUAL;
+SELECT TRIM('EEWELCOME','E')
+                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT TRIM(LEADING 'E' FROM 'EEWELCOME')
+  2  FROM DUAL;
+
+TRIM(LE                                                                                                                 
+-------                                                                                                                 
+WELCOME                                                                                                                 
+
+SQL> RD
+SP2-0042: unknown command "RD" - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TRIM(BOTH'E' FROM 'EEWELCOME')
+  2* FROM DUAL
+SQL> /
+
+TRIM(B                                                                                                                  
+------                                                                                                                  
+WELCOM                                                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TRIM(BOTH'E'W FROM 'EEWELCOME')
+  2* FROM DUAL
+SQL> /
+SELECT TRIM(BOTH'E'W FROM 'EEWELCOME')
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TRIM(BOTH'EW' FROM 'EEWELCOME')
+  2* FROM DUAL
+SQL> /
+SELECT TRIM(BOTH'EW' FROM 'EEWELCOME')
+       *
+ERROR at line 1:
+ORA-30001: trim set should have only one character 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TRIM(BOTH 'EW' FROM 'EEWELCOME')
+  2* FROM DUAL
+SQL> /
+SELECT TRIM(BOTH 'EW' FROM 'EEWELCOME')
+       *
+ERROR at line 1:
+ORA-30001: trim set should have only one character 
+
+
+SQL> EXIT

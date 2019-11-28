@@ -1,0 +1,2060 @@
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                   
+      7369 S_MITH     CLERK           7902 17-DEC-80        800                    20                                   
+      7499 ALLE_N     SALESMAN        7698 20-FEB-81       1600        300         30                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                   
+      7844 NITIN      SALESMAN        7698 08-SEP-81       1500          0         30                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                   
+      7900 JAMES_     CLERK           7698 03-DEC-81        950                    30                                   
+      7902 ford       ANALYST         7566 03-DEC-81       3000                    20                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                   
+
+14 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NE_W YORK                                                                                     
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+
+SQL> --WAQ TO DISPLAY ENAME AND DNAME OF ALL EMP USING ALL OUTER JOIN.
+SQL> SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO;
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH     RESEARCH                                                                                                     
+ALLE_N     SALES                                                                                                        
+WARD       SALES                                                                                                        
+JONES      RESEARCH                                                                                                     
+MARTIN     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT      RESEARCH                                                                                                     
+KING       ACCOUNTING                                                                                                   
+NITIN      SALES                                                                                                        
+ADAMS      RESEARCH                                                                                                     
+JAMES_     SALES                                                                                                        
+ford       RESEARCH                                                                                                     
+MILLER     ACCOUNTING                                                                                                   
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+CLARK      ACCOUNTING                                                                                                   
+KING       ACCOUNTING                                                                                                   
+MILLER     ACCOUNTING                                                                                                   
+JONES      RESEARCH                                                                                                     
+ford       RESEARCH                                                                                                     
+ADAMS      RESEARCH                                                                                                     
+S_MITH     RESEARCH                                                                                                     
+SCOTT      RESEARCH                                                                                                     
+WARD       SALES                                                                                                        
+NITIN      SALES                                                                                                        
+ALLE_N     SALES                                                                                                        
+JAMES_     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+MARTIN     SALES                                                                                                        
+           OPERATIONS                                                                                                   
+
+15 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH     RESEARCH                                                                                                     
+ALLE_N     SALES                                                                                                        
+WARD       SALES                                                                                                        
+JONES      RESEARCH                                                                                                     
+MARTIN     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT      RESEARCH                                                                                                     
+KING       ACCOUNTING                                                                                                   
+NITIN      SALES                                                                                                        
+ADAMS      RESEARCH                                                                                                     
+JAMES_     SALES                                                                                                        
+ford       RESEARCH                                                                                                     
+MILLER     ACCOUNTING                                                                                                   
+           OPERATIONS                                                                                                   
+
+15 rows selected.
+
+SQL> --Q)WAQ TO LIST ALL EMP WHO ARE WORKING IN RESEARCH DEPT USING ALL OUTER JOIN.
+SQL> SELECT *
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO AND DEPT.DNAME='RESEARCH';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME                  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- --------------         
+LOC                                                                                                                     
+-------------                                                                                                           
+      7369 S_MITH     CLERK           7902 17-DEC-80        800                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7499 ALLE_N     SALESMAN        7698 20-FEB-81       1600        300         30                                   
+                                                                                                                        
+                                                                                                                        
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                   
+                                                                                                                        
+                                                                                                                        
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                   
+                                                                                                                        
+                                                                                                                        
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                   
+                                                                                                                        
+                                                                                                                        
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                   
+                                                                                                                        
+                                                                                                                        
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                   
+                                                                                                                        
+                                                                                                                        
+      7844 NITIN      SALESMAN        7698 08-SEP-81       1500          0         30                                   
+                                                                                                                        
+                                                                                                                        
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7900 JAMES_     CLERK           7698 03-DEC-81        950                    30                                   
+                                                                                                                        
+                                                                                                                        
+      7902 ford       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                   
+                                                                                                                        
+                                                                                                                        
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT *
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND DEPT.DNAME='RESEARCH'
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME                  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- --------------         
+LOC                                                                                                                     
+-------------                                                                                                           
+                                                                                              10 ACCOUNTING             
+NE_W YORK                                                                                                               
+                                                                                                                        
+      7369 S_MITH     CLERK           7902 17-DEC-80        800                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7902 ford       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+                                                                                              30 SALES                  
+CHICAGO                                                                                                                 
+                                                                                                                        
+                                                                                              40 OPERATIONS             
+BOSTON                                                                                                                  
+                                                                                                                        
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT *
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND DEPT.DNAME='RESEARCH'
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME                  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- --------------         
+LOC                                                                                                                     
+-------------                                                                                                           
+      7369 S_MITH     CLERK           7902 17-DEC-80        800                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7499 ALLE_N     SALESMAN        7698 20-FEB-81       1600        300         30                                   
+                                                                                                                        
+                                                                                                                        
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                   
+                                                                                                                        
+                                                                                                                        
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                   
+                                                                                                                        
+                                                                                                                        
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                   
+                                                                                                                        
+                                                                                                                        
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                   
+                                                                                                                        
+                                                                                                                        
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                   
+                                                                                                                        
+                                                                                                                        
+      7844 NITIN      SALESMAN        7698 08-SEP-81       1500          0         30                                   
+                                                                                                                        
+                                                                                                                        
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7900 JAMES_     CLERK           7698 03-DEC-81        950                    30                                   
+                                                                                                                        
+                                                                                                                        
+      7902 ford       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH               
+DALLAS                                                                                                                  
+                                                                                                                        
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                   
+                                                                                                                        
+                                                                                                                        
+                                                                                              10 ACCOUNTING             
+NE_W YORK                                                                                                               
+                                                                                                                        
+                                                                                              30 SALES                  
+CHICAGO                                                                                                                 
+                                                                                                                        
+                                                                                              40 OPERATIONS             
+BOSTON                                                                                                                  
+                                                                                                                        
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,DNAME AND JOB WHO ARE WORKING AS ANALYST USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='ANALYST'
+SQL> /
+
+ENAME      JOB       DNAME                                                                                              
+---------- --------- --------------                                                                                     
+S_MITH     CLERK                                                                                                        
+ALLE_N     SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST   RESEARCH                                                                                           
+KING       PRESIDENT                                                                                                    
+NITIN      SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES_     CLERK                                                                                                        
+ford       ANALYST   RESEARCH                                                                                           
+MILLER     CLERK                                                                                                        
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='ANALYST'
+SQL> /
+
+ENAME      JOB       DNAME                                                                                              
+---------- --------- --------------                                                                                     
+                     ACCOUNTING                                                                                         
+ford       ANALYST   RESEARCH                                                                                           
+SCOTT      ANALYST   RESEARCH                                                                                           
+                     SALES                                                                                              
+                     OPERATIONS                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='ANALYST'
+SQL> /
+
+ENAME      JOB       DNAME                                                                                              
+---------- --------- --------------                                                                                     
+S_MITH     CLERK                                                                                                        
+ALLE_N     SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST   RESEARCH                                                                                           
+KING       PRESIDENT                                                                                                    
+NITIN      SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES_     CLERK                                                                                                        
+ford       ANALYST   RESEARCH                                                                                           
+MILLER     CLERK                                                                                                        
+                     ACCOUNTING                                                                                         
+                     SALES                                                                                              
+                     OPERATIONS                                                                                         
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,HIREDATE AND LOC OF ALL EMP WHOSE NAME CONSIST OF ATLEAST ONE 'A' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0
+SQL> /
+
+ENAME      JOB       HIREDATE  LOC                                                                                      
+---------- --------- --------- -------------                                                                            
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81 CHICAGO                                                                                  
+WARD       SALESMAN  22-FEB-81 CHICAGO                                                                                  
+JONES      MANAGER   02-APR-81                                                                                          
+MARTIN     SALESMAN  28-SEP-81 CHICAGO                                                                                  
+BLAKE      MANAGER   01-MAY-81 CHICAGO                                                                                  
+CLARK      MANAGER   09-JUN-81 NE_W YORK                                                                                
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81                                                                                          
+NITIN      SALESMAN  08-SEP-81                                                                                          
+ADAMS      CLERK     23-MAY-87 DALLAS                                                                                   
+JAMES_     CLERK     03-DEC-81 CHICAGO                                                                                  
+ford       ANALYST   03-DEC-81                                                                                          
+MILLER     CLERK     23-JAN-82                                                                                          
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0
+SQL> /
+
+ENAME      JOB       HIREDATE  LOC                                                                                      
+---------- --------- --------- -------------                                                                            
+CLARK      MANAGER   09-JUN-81 NE_W YORK                                                                                
+ADAMS      CLERK     23-MAY-87 DALLAS                                                                                   
+MARTIN     SALESMAN  28-SEP-81 CHICAGO                                                                                  
+JAMES_     CLERK     03-DEC-81 CHICAGO                                                                                  
+WARD       SALESMAN  22-FEB-81 CHICAGO                                                                                  
+ALLE_N     SALESMAN  20-FEB-81 CHICAGO                                                                                  
+BLAKE      MANAGER   01-MAY-81 CHICAGO                                                                                  
+                               BOSTON                                                                                   
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0
+SQL> /
+
+ENAME      JOB       HIREDATE  LOC                                                                                      
+---------- --------- --------- -------------                                                                            
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81 CHICAGO                                                                                  
+WARD       SALESMAN  22-FEB-81 CHICAGO                                                                                  
+JONES      MANAGER   02-APR-81                                                                                          
+MARTIN     SALESMAN  28-SEP-81 CHICAGO                                                                                  
+BLAKE      MANAGER   01-MAY-81 CHICAGO                                                                                  
+CLARK      MANAGER   09-JUN-81 NE_W YORK                                                                                
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81                                                                                          
+NITIN      SALESMAN  08-SEP-81                                                                                          
+ADAMS      CLERK     23-MAY-87 DALLAS                                                                                   
+JAMES_     CLERK     03-DEC-81 CHICAGO                                                                                  
+ford       ANALYST   03-DEC-81                                                                                          
+MILLER     CLERK     23-JAN-82                                                                                          
+                               BOSTON                                                                                   
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,SAL,COMM AND DNAME OF ALL EMP WHO ARE EARNING IN THE RANGE OF 1000 TO 4000 WITH SOME COMM IN DEPTNO 10,20,30 USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.COMM,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.DEPTNO IN(10,20,30) AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NOT NULL
+SQL> ;
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.COMM,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.DEPTNO IN(10,20,30) AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NOT NULL
+SQL> /
+
+ENAME      JOB              SAL       COMM DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+S_MITH     CLERK            800                                                                                         
+ALLE_N     SALESMAN        1600        300 SALES                                                                        
+WARD       SALESMAN        1250        500 SALES                                                                        
+JONES      MANAGER         2975                                                                                         
+MARTIN     SALESMAN        1250       1400 SALES                                                                        
+BLAKE      MANAGER         2850                                                                                         
+CLARK      MANAGER         2450                                                                                         
+SCOTT      ANALYST         3000                                                                                         
+KING       PRESIDENT       5000                                                                                         
+NITIN      SALESMAN        1500          0 SALES                                                                        
+ADAMS      CLERK           1100                                                                                         
+JAMES_     CLERK            950                                                                                         
+ford       ANALYST         3000                                                                                         
+MILLER     CLERK           1300                                                                                         
+                                           ACCOUNTING                                                                   
+                                           RESEARCH                                                                     
+                                           OPERATIONS                                                                   
+
+17 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.COMM,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.DEPTNO IN(10,20,30) AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NOT NULL
+SQL> /
+
+ENAME      JOB              SAL       COMM DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+S_MITH     CLERK            800                                                                                         
+ALLE_N     SALESMAN        1600        300 SALES                                                                        
+WARD       SALESMAN        1250        500 SALES                                                                        
+JONES      MANAGER         2975                                                                                         
+MARTIN     SALESMAN        1250       1400 SALES                                                                        
+BLAKE      MANAGER         2850                                                                                         
+CLARK      MANAGER         2450                                                                                         
+SCOTT      ANALYST         3000                                                                                         
+KING       PRESIDENT       5000                                                                                         
+NITIN      SALESMAN        1500          0 SALES                                                                        
+ADAMS      CLERK           1100                                                                                         
+JAMES_     CLERK            950                                                                                         
+ford       ANALYST         3000                                                                                         
+MILLER     CLERK           1300                                                                                         
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.COMM,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.DEPTNO IN(10,20,30) AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NOT NULL
+SQL> /
+
+ENAME      JOB              SAL       COMM DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+                                           ACCOUNTING                                                                   
+                                           RESEARCH                                                                     
+ALLE_N     SALESMAN        1600        300 SALES                                                                        
+WARD       SALESMAN        1250        500 SALES                                                                        
+MARTIN     SALESMAN        1250       1400 SALES                                                                        
+NITIN      SALESMAN        1500          0 SALES                                                                        
+                                           OPERATIONS                                                                   
+
+7 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,HIREDATE,JOB,DNAME AND LOC OF ALL EMP WHO ARE WORKING AS CLERK,ANALYST,SALESMAN AND PRESIDENT AND JOIN IN THE YEAR 81 USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') 
+  4* AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME          LOC                                                                       
+---------- --------- --------- -------------- -------------                                                             
+KING       PRESIDENT 17-NOV-81 ACCOUNTING     NE_W YORK                                                                 
+ford       ANALYST   03-DEC-81 RESEARCH       DALLAS                                                                    
+ALLE_N     SALESMAN  20-FEB-81 SALES          CHICAGO                                                                   
+WARD       SALESMAN  22-FEB-81 SALES          CHICAGO                                                                   
+MARTIN     SALESMAN  28-SEP-81 SALES          CHICAGO                                                                   
+NITIN      SALESMAN  08-SEP-81 SALES          CHICAGO                                                                   
+JAMES_     CLERK     03-DEC-81 SALES          CHICAGO                                                                   
+                               OPERATIONS     BOSTON                                                                    
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') 
+  4* AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME          LOC                                                                       
+---------- --------- --------- -------------- -------------                                                             
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81 SALES          CHICAGO                                                                   
+WARD       SALESMAN  22-FEB-81 SALES          CHICAGO                                                                   
+JONES      MANAGER   02-APR-81                                                                                          
+MARTIN     SALESMAN  28-SEP-81 SALES          CHICAGO                                                                   
+BLAKE      MANAGER   01-MAY-81                                                                                          
+CLARK      MANAGER   09-JUN-81                                                                                          
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81 ACCOUNTING     NE_W YORK                                                                 
+NITIN      SALESMAN  08-SEP-81 SALES          CHICAGO                                                                   
+ADAMS      CLERK     23-MAY-87                                                                                          
+JAMES_     CLERK     03-DEC-81 SALES          CHICAGO                                                                   
+ford       ANALYST   03-DEC-81 RESEARCH       DALLAS                                                                    
+MILLER     CLERK     23-JAN-82                                                                                          
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') 
+  4* AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME          LOC                                                                       
+---------- --------- --------- -------------- -------------                                                             
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81 SALES          CHICAGO                                                                   
+WARD       SALESMAN  22-FEB-81 SALES          CHICAGO                                                                   
+JONES      MANAGER   02-APR-81                                                                                          
+MARTIN     SALESMAN  28-SEP-81 SALES          CHICAGO                                                                   
+BLAKE      MANAGER   01-MAY-81                                                                                          
+CLARK      MANAGER   09-JUN-81                                                                                          
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81 ACCOUNTING     NE_W YORK                                                                 
+NITIN      SALESMAN  08-SEP-81 SALES          CHICAGO                                                                   
+ADAMS      CLERK     23-MAY-87                                                                                          
+JAMES_     CLERK     03-DEC-81 SALES          CHICAGO                                                                   
+ford       ANALYST   03-DEC-81 RESEARCH       DALLAS                                                                    
+MILLER     CLERK     23-JAN-82                                                                                          
+                               OPERATIONS     BOSTON                                                                    
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,DNAME AND DEPTNO OF ALL EMP USING ALL OUTER JOIN.
+SQL> SELECT EMP.ENAME,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO;
+
+ENAME          DEPTNO DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+S_MITH             20 RESEARCH                                                                                          
+ALLE_N             30 SALES                                                                                             
+WARD               30 SALES                                                                                             
+JONES              20 RESEARCH                                                                                          
+MARTIN             30 SALES                                                                                             
+BLAKE              30 SALES                                                                                             
+CLARK              10 ACCOUNTING                                                                                        
+SCOTT              20 RESEARCH                                                                                          
+KING               10 ACCOUNTING                                                                                        
+NITIN              30 SALES                                                                                             
+ADAMS              20 RESEARCH                                                                                          
+JAMES_             30 SALES                                                                                             
+ford               20 RESEARCH                                                                                          
+MILLER             10 ACCOUNTING                                                                                        
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME          DEPTNO DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+CLARK              10 ACCOUNTING                                                                                        
+KING               10 ACCOUNTING                                                                                        
+MILLER             10 ACCOUNTING                                                                                        
+JONES              20 RESEARCH                                                                                          
+ford               20 RESEARCH                                                                                          
+ADAMS              20 RESEARCH                                                                                          
+S_MITH             20 RESEARCH                                                                                          
+SCOTT              20 RESEARCH                                                                                          
+WARD               30 SALES                                                                                             
+NITIN              30 SALES                                                                                             
+ALLE_N             30 SALES                                                                                             
+JAMES_             30 SALES                                                                                             
+BLAKE              30 SALES                                                                                             
+MARTIN             30 SALES                                                                                             
+                      OPERATIONS                                                                                        
+
+15 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME          DEPTNO DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+S_MITH             20 RESEARCH                                                                                          
+ALLE_N             30 SALES                                                                                             
+WARD               30 SALES                                                                                             
+JONES              20 RESEARCH                                                                                          
+MARTIN             30 SALES                                                                                             
+BLAKE              30 SALES                                                                                             
+CLARK              10 ACCOUNTING                                                                                        
+SCOTT              20 RESEARCH                                                                                          
+KING               10 ACCOUNTING                                                                                        
+NITIN              30 SALES                                                                                             
+ADAMS              20 RESEARCH                                                                                          
+JAMES_             30 SALES                                                                                             
+ford               20 RESEARCH                                                                                          
+MILLER             10 ACCOUNTING                                                                                        
+                      OPERATIONS                                                                                        
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,HIREDATE AND DNAME OF ALL EMP WHO ARE JOIN IN THE MONTH OF 'MAY' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(HIREDATE,'MAY')>0
+SQL> /
+
+ENAME      HIREDATE  DNAME                                                                                              
+---------- --------- --------------                                                                                     
+S_MITH     17-DEC-80                                                                                                    
+ALLE_N     20-FEB-81                                                                                                    
+WARD       22-FEB-81                                                                                                    
+JONES      02-APR-81                                                                                                    
+MARTIN     28-SEP-81                                                                                                    
+BLAKE      01-MAY-81 SALES                                                                                              
+CLARK      09-JUN-81                                                                                                    
+SCOTT      19-APR-87                                                                                                    
+KING       17-NOV-81                                                                                                    
+NITIN      08-SEP-81                                                                                                    
+ADAMS      23-MAY-87 RESEARCH                                                                                           
+JAMES_     03-DEC-81                                                                                                    
+ford       03-DEC-81                                                                                                    
+MILLER     23-JAN-82                                                                                                    
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(HIREDATE,'MAY')>0
+SQL> /
+
+ENAME      HIREDATE  DNAME                                                                                              
+---------- --------- --------------                                                                                     
+                     ACCOUNTING                                                                                         
+ADAMS      23-MAY-87 RESEARCH                                                                                           
+BLAKE      01-MAY-81 SALES                                                                                              
+                     OPERATIONS                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(HIREDATE,'MAY')>0
+SQL> /
+
+ENAME      HIREDATE  DNAME                                                                                              
+---------- --------- --------------                                                                                     
+S_MITH     17-DEC-80                                                                                                    
+ALLE_N     20-FEB-81                                                                                                    
+WARD       22-FEB-81                                                                                                    
+JONES      02-APR-81                                                                                                    
+MARTIN     28-SEP-81                                                                                                    
+BLAKE      01-MAY-81 SALES                                                                                              
+CLARK      09-JUN-81                                                                                                    
+SCOTT      19-APR-87                                                                                                    
+KING       17-NOV-81                                                                                                    
+NITIN      08-SEP-81                                                                                                    
+ADAMS      23-MAY-87 RESEARCH                                                                                           
+JAMES_     03-DEC-81                                                                                                    
+ford       03-DEC-81                                                                                                    
+MILLER     23-JAN-82                                                                                                    
+                     ACCOUNTING                                                                                         
+                     OPERATIONS                                                                                         
+
+16 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME AND DNAME OF ALL EMP WHO DOES NOT HAVE ANY COMM USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH     RESEARCH                                                                                                     
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES      RESEARCH                                                                                                     
+MARTIN                                                                                                                  
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT      RESEARCH                                                                                                     
+KING       ACCOUNTING                                                                                                   
+NITIN                                                                                                                   
+ADAMS      RESEARCH                                                                                                     
+JAMES_     SALES                                                                                                        
+ford       RESEARCH                                                                                                     
+MILLER     ACCOUNTING                                                                                                   
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+MILLER     ACCOUNTING                                                                                                   
+CLARK      ACCOUNTING                                                                                                   
+KING       ACCOUNTING                                                                                                   
+JONES      RESEARCH                                                                                                     
+S_MITH     RESEARCH                                                                                                     
+SCOTT      RESEARCH                                                                                                     
+ford       RESEARCH                                                                                                     
+ADAMS      RESEARCH                                                                                                     
+JAMES_     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+           OPERATIONS                                                                                                   
+
+11 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH     RESEARCH                                                                                                     
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES      RESEARCH                                                                                                     
+MARTIN                                                                                                                  
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT      RESEARCH                                                                                                     
+KING       ACCOUNTING                                                                                                   
+NITIN                                                                                                                   
+ADAMS      RESEARCH                                                                                                     
+JAMES_     SALES                                                                                                        
+ford       RESEARCH                                                                                                     
+MILLER     ACCOUNTING                                                                                                   
+           OPERATIONS                                                                                                   
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,HIREDATE AND DNAME OF ALL MANAGER WHO DON'T HAVE COMM USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='MANAGER' AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME                                                                                    
+---------- --------- --------- --------------                                                                           
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81                                                                                          
+WARD       SALESMAN  22-FEB-81                                                                                          
+JONES      MANAGER   02-APR-81 RESEARCH                                                                                 
+MARTIN     SALESMAN  28-SEP-81                                                                                          
+BLAKE      MANAGER   01-MAY-81 SALES                                                                                    
+CLARK      MANAGER   09-JUN-81 ACCOUNTING                                                                               
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81                                                                                          
+NITIN      SALESMAN  08-SEP-81                                                                                          
+ADAMS      CLERK     23-MAY-87                                                                                          
+JAMES_     CLERK     03-DEC-81                                                                                          
+ford       ANALYST   03-DEC-81                                                                                          
+MILLER     CLERK     23-JAN-82                                                                                          
+                               OPERATIONS                                                                               
+
+15 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='MANAGER' AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME                                                                                    
+---------- --------- --------- --------------                                                                           
+CLARK      MANAGER   09-JUN-81 ACCOUNTING                                                                               
+JONES      MANAGER   02-APR-81 RESEARCH                                                                                 
+BLAKE      MANAGER   01-MAY-81 SALES                                                                                    
+                               OPERATIONS                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB='MANAGER' AND EMP.COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE  DNAME                                                                                    
+---------- --------- --------- --------------                                                                           
+S_MITH     CLERK     17-DEC-80                                                                                          
+ALLE_N     SALESMAN  20-FEB-81                                                                                          
+WARD       SALESMAN  22-FEB-81                                                                                          
+JONES      MANAGER   02-APR-81 RESEARCH                                                                                 
+MARTIN     SALESMAN  28-SEP-81                                                                                          
+BLAKE      MANAGER   01-MAY-81 SALES                                                                                    
+CLARK      MANAGER   09-JUN-81 ACCOUNTING                                                                               
+SCOTT      ANALYST   19-APR-87                                                                                          
+KING       PRESIDENT 17-NOV-81                                                                                          
+NITIN      SALESMAN  08-SEP-81                                                                                          
+ADAMS      CLERK     23-MAY-87                                                                                          
+JAMES_     CLERK     03-DEC-81                                                                                          
+ford       ANALYST   03-DEC-81                                                                                          
+MILLER     CLERK     23-JAN-82                                                                                          
+
+14 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,HIREDATE,SAL AND COMM ALONG WITH THEIR DEPARTMENTAL DETAILS OF ALL SALESMAN AND CLERK USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,DEPT.*
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN=('CLERK','SALESMAN')
+SQL> /
+ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN=('CLERK','SALESMAN')
+                                        *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,DEPT.*
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN ('CLERK','SALESMAN')
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+S_MITH     CLERK     17-DEC-80        800                    20 RESEARCH       DALLAS                                   
+ALLE_N     SALESMAN  20-FEB-81       1600        300         30 SALES          CHICAGO                                  
+WARD       SALESMAN  22-FEB-81       1250        500         30 SALES          CHICAGO                                  
+JONES      MANAGER   02-APR-81       2975                                                                               
+MARTIN     SALESMAN  28-SEP-81       1250       1400         30 SALES          CHICAGO                                  
+BLAKE      MANAGER   01-MAY-81       2850                                                                               
+CLARK      MANAGER   09-JUN-81       2450                                                                               
+SCOTT      ANALYST   19-APR-87       3000                                                                               
+KING       PRESIDENT 17-NOV-81       5000                                                                               
+NITIN      SALESMAN  08-SEP-81       1500          0         30 SALES          CHICAGO                                  
+ADAMS      CLERK     23-MAY-87       1100                    20 RESEARCH       DALLAS                                   
+JAMES_     CLERK     03-DEC-81        950                    30 SALES          CHICAGO                                  
+ford       ANALYST   03-DEC-81       3000                                                                               
+MILLER     CLERK     23-JAN-82       1300                    10 ACCOUNTING     NE_W YORK                                
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,DEPT.*
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN ('CLERK','SALESMAN')
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+MILLER     CLERK     23-JAN-82       1300                    10 ACCOUNTING     NE_W YORK                                
+S_MITH     CLERK     17-DEC-80        800                    20 RESEARCH       DALLAS                                   
+ADAMS      CLERK     23-MAY-87       1100                    20 RESEARCH       DALLAS                                   
+ALLE_N     SALESMAN  20-FEB-81       1600        300         30 SALES          CHICAGO                                  
+WARD       SALESMAN  22-FEB-81       1250        500         30 SALES          CHICAGO                                  
+MARTIN     SALESMAN  28-SEP-81       1250       1400         30 SALES          CHICAGO                                  
+NITIN      SALESMAN  08-SEP-81       1500          0         30 SALES          CHICAGO                                  
+JAMES_     CLERK     03-DEC-81        950                    30 SALES          CHICAGO                                  
+                                                             40 OPERATIONS     BOSTON                                   
+
+9 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,DEPT.*
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN ('CLERK','SALESMAN')
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+S_MITH     CLERK     17-DEC-80        800                    20 RESEARCH       DALLAS                                   
+ALLE_N     SALESMAN  20-FEB-81       1600        300         30 SALES          CHICAGO                                  
+WARD       SALESMAN  22-FEB-81       1250        500         30 SALES          CHICAGO                                  
+JONES      MANAGER   02-APR-81       2975                                                                               
+MARTIN     SALESMAN  28-SEP-81       1250       1400         30 SALES          CHICAGO                                  
+BLAKE      MANAGER   01-MAY-81       2850                                                                               
+CLARK      MANAGER   09-JUN-81       2450                                                                               
+SCOTT      ANALYST   19-APR-87       3000                                                                               
+KING       PRESIDENT 17-NOV-81       5000                                                                               
+NITIN      SALESMAN  08-SEP-81       1500          0         30 SALES          CHICAGO                                  
+ADAMS      CLERK     23-MAY-87       1100                    20 RESEARCH       DALLAS                                   
+JAMES_     CLERK     03-DEC-81        950                    30 SALES          CHICAGO                                  
+ford       ANALYST   03-DEC-81       3000                                                                               
+MILLER     CLERK     23-JAN-82       1300                    10 ACCOUNTING     NE_W YORK                                
+                                                             40 OPERATIONS     BOSTON                                   
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,HIREDATE,DNAME AND LOC WHERE THE EMP JOIN BETWEEN '01-MAY-81' AND '31-MAY-81' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.HIREDATE BETWEEN '01-MAY-81' AND '31-DEC-81'
+SQL> /
+
+ENAME      HIREDATE  DNAME          LOC                                                                                 
+---------- --------- -------------- -------------                                                                       
+S_MITH     17-DEC-80                                                                                                    
+ALLE_N     20-FEB-81                                                                                                    
+WARD       22-FEB-81                                                                                                    
+JONES      02-APR-81                                                                                                    
+MARTIN     28-SEP-81 SALES          CHICAGO                                                                             
+BLAKE      01-MAY-81 SALES          CHICAGO                                                                             
+CLARK      09-JUN-81 ACCOUNTING     NE_W YORK                                                                           
+SCOTT      19-APR-87                                                                                                    
+KING       17-NOV-81 ACCOUNTING     NE_W YORK                                                                           
+NITIN      08-SEP-81 SALES          CHICAGO                                                                             
+ADAMS      23-MAY-87                                                                                                    
+JAMES_     03-DEC-81 SALES          CHICAGO                                                                             
+ford       03-DEC-81 RESEARCH       DALLAS                                                                              
+MILLER     23-JAN-82                                                                                                    
+                     OPERATIONS     BOSTON                                                                              
+
+15 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.HIREDATE BETWEEN '01-MAY-81' AND '31-DEC-81'
+SQL> /
+
+ENAME      HIREDATE  DNAME          LOC                                                                                 
+---------- --------- -------------- -------------                                                                       
+KING       17-NOV-81 ACCOUNTING     NE_W YORK                                                                           
+CLARK      09-JUN-81 ACCOUNTING     NE_W YORK                                                                           
+ford       03-DEC-81 RESEARCH       DALLAS                                                                              
+JAMES_     03-DEC-81 SALES          CHICAGO                                                                             
+NITIN      08-SEP-81 SALES          CHICAGO                                                                             
+BLAKE      01-MAY-81 SALES          CHICAGO                                                                             
+MARTIN     28-SEP-81 SALES          CHICAGO                                                                             
+                     OPERATIONS     BOSTON                                                                              
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.HIREDATE,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.HIREDATE BETWEEN '01-MAY-81' AND '31-DEC-81'
+SQL> /
+
+ENAME      HIREDATE  DNAME          LOC                                                                                 
+---------- --------- -------------- -------------                                                                       
+S_MITH     17-DEC-80                                                                                                    
+ALLE_N     20-FEB-81                                                                                                    
+WARD       22-FEB-81                                                                                                    
+JONES      02-APR-81                                                                                                    
+MARTIN     28-SEP-81 SALES          CHICAGO                                                                             
+BLAKE      01-MAY-81 SALES          CHICAGO                                                                             
+CLARK      09-JUN-81 ACCOUNTING     NE_W YORK                                                                           
+SCOTT      19-APR-87                                                                                                    
+KING       17-NOV-81 ACCOUNTING     NE_W YORK                                                                           
+NITIN      08-SEP-81 SALES          CHICAGO                                                                             
+ADAMS      23-MAY-87                                                                                                    
+JAMES_     03-DEC-81 SALES          CHICAGO                                                                             
+ford       03-DEC-81 RESEARCH       DALLAS                                                                              
+MILLER     23-JAN-82                                                                                                    
+
+14 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME AND LOC WHERE LOC CONSIST OF MINIMUM ONE SPACE USING ALL OUTER JOIN.
+SQL> SELECT EMP.ENAME,DEPT.LOC
+  2  FROM LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,' ')>0;
+FROM LEFT OUTER JOIN DEPT
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,' ')>0
+SQL> /
+
+ENAME      LOC                                                                                                          
+---------- -------------                                                                                                
+S_MITH                                                                                                                  
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES                                                                                                                   
+MARTIN                                                                                                                  
+BLAKE                                                                                                                   
+CLARK      NE_W YORK                                                                                                    
+SCOTT                                                                                                                   
+KING       NE_W YORK                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_                                                                                                                  
+ford                                                                                                                    
+MILLER     NE_W YORK                                                                                                    
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,' ')>0
+SQL> /
+
+ENAME      LOC                                                                                                          
+---------- -------------                                                                                                
+CLARK      NE_W YORK                                                                                                    
+KING       NE_W YORK                                                                                                    
+MILLER     NE_W YORK                                                                                                    
+           DALLAS                                                                                                       
+           CHICAGO                                                                                                      
+           BOSTON                                                                                                       
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,' ')>0
+SQL> /
+
+ENAME      LOC                                                                                                          
+---------- -------------                                                                                                
+S_MITH                                                                                                                  
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES                                                                                                                   
+MARTIN                                                                                                                  
+BLAKE                                                                                                                   
+CLARK      NE_W YORK                                                                                                    
+SCOTT                                                                                                                   
+KING       NE_W YORK                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_                                                                                                                  
+ford                                                                                                                    
+MILLER     NE_W YORK                                                                                                    
+           DALLAS                                                                                                       
+           CHICAGO                                                                                                      
+           BOSTON                                                                                                       
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,MGR ID,COMM,DEPTNO AND DNAME OF ALL EMP WHERE THE EMP DOES NOT HAVE MGR AND COMM USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.MGR,EMP.COMM,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND MGR IS NULL AND COMM IS NULL
+SQL> /
+
+ENAME             MGR       COMM     DEPTNO DNAME                                                                       
+---------- ---------- ---------- ---------- --------------                                                              
+S_MITH           7902                    20                                                                             
+ALLE_N           7698        300         30                                                                             
+WARD             7698        500         30                                                                             
+JONES            7839                    20                                                                             
+MARTIN           7698       1400         30                                                                             
+BLAKE            7839                    30                                                                             
+CLARK            7839                    10                                                                             
+SCOTT            7566                    20                                                                             
+KING                                     10 ACCOUNTING                                                                  
+NITIN            7698          0         30                                                                             
+ADAMS            7788                    20                                                                             
+JAMES_           7698                    30                                                                             
+ford             7566                    20                                                                             
+MILLER           7782                    10                                                                             
+                                            RESEARCH                                                                    
+                                            SALES                                                                       
+                                            OPERATIONS                                                                  
+
+17 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.MGR,EMP.COMM,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND MGR IS NULL AND COMM IS NULL
+SQL> /
+
+ENAME             MGR       COMM     DEPTNO DNAME                                                                       
+---------- ---------- ---------- ---------- --------------                                                              
+KING                                     10 ACCOUNTING                                                                  
+                                            RESEARCH                                                                    
+                                            SALES                                                                       
+                                            OPERATIONS                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.MGR,EMP.COMM,EMP.DEPTNO,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND MGR IS NULL AND COMM IS NULL
+SQL> /
+
+ENAME             MGR       COMM     DEPTNO DNAME                                                                       
+---------- ---------- ---------- ---------- --------------                                                              
+S_MITH           7902                    20                                                                             
+ALLE_N           7698        300         30                                                                             
+WARD             7698        500         30                                                                             
+JONES            7839                    20                                                                             
+MARTIN           7698       1400         30                                                                             
+BLAKE            7839                    30                                                                             
+CLARK            7839                    10                                                                             
+SCOTT            7566                    20                                                                             
+KING                                     10 ACCOUNTING                                                                  
+NITIN            7698          0         30                                                                             
+ADAMS            7788                    20                                                                             
+JAMES_           7698                    30                                                                             
+ford             7566                    20                                                                             
+MILLER           7782                    10                                                                             
+
+14 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,SAL AND DNAME WHERE DNAME CONSIST OF TWO CONJUGATIVE 'CC' WITHOUT USING LIKE OPERATOR USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.SAL,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'CC')>0
+SQL> /
+
+ENAME             SAL DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+S_MITH            800                                                                                                   
+ALLE_N           1600                                                                                                   
+WARD             1250                                                                                                   
+JONES            2975                                                                                                   
+MARTIN           1250                                                                                                   
+BLAKE            2850                                                                                                   
+CLARK            2450 ACCOUNTING                                                                                        
+SCOTT            3000                                                                                                   
+KING             5000 ACCOUNTING                                                                                        
+NITIN            1500                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES_            950                                                                                                   
+ford             3000                                                                                                   
+MILLER           1300 ACCOUNTING                                                                                        
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.SAL,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'CC')>0
+SQL> /
+
+ENAME             SAL DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+CLARK            2450 ACCOUNTING                                                                                        
+KING             5000 ACCOUNTING                                                                                        
+MILLER           1300 ACCOUNTING                                                                                        
+                      RESEARCH                                                                                          
+                      SALES                                                                                             
+                      OPERATIONS                                                                                        
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.SAL,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'CC')>0
+SQL> /
+
+ENAME             SAL DNAME                                                                                             
+---------- ---------- --------------                                                                                    
+S_MITH            800                                                                                                   
+ALLE_N           1600                                                                                                   
+WARD             1250                                                                                                   
+JONES            2975                                                                                                   
+MARTIN           1250                                                                                                   
+BLAKE            2850                                                                                                   
+CLARK            2450 ACCOUNTING                                                                                        
+SCOTT            3000                                                                                                   
+KING             5000 ACCOUNTING                                                                                        
+NITIN            1500                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES_            950                                                                                                   
+ford             3000                                                                                                   
+MILLER           1300 ACCOUNTING                                                                                        
+                      RESEARCH                                                                                          
+                      SALES                                                                                             
+                      OPERATIONS                                                                                        
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY EMPNO,ENAME AND LOC WHERE LOCATION CONSIST OF EXACTLY ONE 'O' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.EMPNO,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'O')>0 AND NOT INSTR(LOC,'O',1,2)>0
+SQL> /
+
+ENAME           EMPNO LOC                                                                                               
+---------- ---------- -------------                                                                                     
+S_MITH           7369                                                                                                   
+ALLE_N           7499 CHICAGO                                                                                           
+WARD             7521 CHICAGO                                                                                           
+JONES            7566                                                                                                   
+MARTIN           7654 CHICAGO                                                                                           
+BLAKE            7698 CHICAGO                                                                                           
+CLARK            7782 NE_W YORK                                                                                         
+SCOTT            7788                                                                                                   
+KING             7839 NE_W YORK                                                                                         
+NITIN            7844 CHICAGO                                                                                           
+ADAMS            7876                                                                                                   
+JAMES_           7900 CHICAGO                                                                                           
+ford             7902                                                                                                   
+MILLER           7934 NE_W YORK                                                                                         
+                      DALLAS                                                                                            
+                      BOSTON                                                                                            
+
+16 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.EMPNO,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'O')>0 AND NOT INSTR(LOC,'O',1,2)>0
+SQL> /
+
+ENAME           EMPNO LOC                                                                                               
+---------- ---------- -------------                                                                                     
+CLARK            7782 NE_W YORK                                                                                         
+KING             7839 NE_W YORK                                                                                         
+MILLER           7934 NE_W YORK                                                                                         
+                      DALLAS                                                                                            
+ALLE_N           7499 CHICAGO                                                                                           
+WARD             7521 CHICAGO                                                                                           
+MARTIN           7654 CHICAGO                                                                                           
+BLAKE            7698 CHICAGO                                                                                           
+NITIN            7844 CHICAGO                                                                                           
+JAMES_           7900 CHICAGO                                                                                           
+                      BOSTON                                                                                            
+
+11 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.EMPNO,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'O')>0 AND NOT INSTR(LOC,'O',1,2)>0
+SQL> /
+
+ENAME           EMPNO LOC                                                                                               
+---------- ---------- -------------                                                                                     
+S_MITH           7369                                                                                                   
+ALLE_N           7499 CHICAGO                                                                                           
+WARD             7521 CHICAGO                                                                                           
+JONES            7566                                                                                                   
+MARTIN           7654 CHICAGO                                                                                           
+BLAKE            7698 CHICAGO                                                                                           
+CLARK            7782 NE_W YORK                                                                                         
+SCOTT            7788                                                                                                   
+KING             7839 NE_W YORK                                                                                         
+NITIN            7844 CHICAGO                                                                                           
+ADAMS            7876                                                                                                   
+JAMES_           7900 CHICAGO                                                                                           
+ford             7902                                                                                                   
+MILLER           7934 NE_W YORK                                                                                         
+
+14 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME AND DNAME WHERE ENAME AND DNAME CONSIST OF EXCATLY ONE 'A' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0 AND NOT INSTR(ENAME,'A',1,2)>0 AND INSTR(DNAME,'A')>0 AND NOT INSTR(DNAME,'A',1,2)>0
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N     SALES                                                                                                        
+WARD       SALES                                                                                                        
+JONES                                                                                                                   
+MARTIN     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT                                                                                                                   
+KING                                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_     SALES                                                                                                        
+ford                                                                                                                    
+MILLER                                                                                                                  
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0 AND NOT INSTR(ENAME,'A',1,2)>0 AND INSTR(DNAME,'A')>0 AND NOT INSTR(DNAME,'A',1,2)>0
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N     SALES                                                                                                        
+WARD       SALES                                                                                                        
+JONES                                                                                                                   
+MARTIN     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT                                                                                                                   
+KING                                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_     SALES                                                                                                        
+ford                                                                                                                    
+MILLER                                                                                                                  
+           RESEARCH                                                                                                     
+           OPERATIONS                                                                                                   
+
+16 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'A')>0 AND NOT INSTR(ENAME,'A',1,2)>0 AND INSTR(DNAME,'A')>0 AND NOT INSTR(DNAME,'A',1,2)>0
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N     SALES                                                                                                        
+WARD       SALES                                                                                                        
+JONES                                                                                                                   
+MARTIN     SALES                                                                                                        
+BLAKE      SALES                                                                                                        
+CLARK      ACCOUNTING                                                                                                   
+SCOTT                                                                                                                   
+KING                                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_     SALES                                                                                                        
+ford                                                                                                                    
+MILLER                                                                                                                  
+
+14 rows selected.
+
+SQL> --Q)WAQ TO LIST THE ENAME AND DNAME WHERE 2ND LAST CHAR IN BOTH ENAME AND DNAME IS N USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'N',LENGTH(ENAME)-1,1)=LENGTH(ENAME)-1 AND NOT INSTR(DNAME,'N',LENGTH(DNAME)-1,1)=LENGTH(DNAME)-1
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES                                                                                                                   
+MARTIN                                                                                                                  
+BLAKE                                                                                                                   
+CLARK                                                                                                                   
+SCOTT                                                                                                                   
+KING                                                                                                                    
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_                                                                                                                  
+ford                                                                                                                    
+MILLER                                                                                                                  
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'N',LENGTH(ENAME)-1,1)=LENGTH(ENAME)-1 AND INSTR(DNAME,'N',LENGTH(DNAME)-1,1)=LENGTH(DNAME)-1
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES                                                                                                                   
+MARTIN                                                                                                                  
+BLAKE                                                                                                                   
+CLARK                                                                                                                   
+SCOTT                                                                                                                   
+KING       ACCOUNTING                                                                                                   
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_                                                                                                                  
+ford                                                                                                                    
+MILLER                                                                                                                  
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'N',LENGTH(ENAME)-1,1)=LENGTH(ENAME)-1 AND INSTR(DNAME,'N',LENGTH(DNAME)-1,1)=LENGTH(DNAME)-1
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+KING       ACCOUNTING                                                                                                   
+           RESEARCH                                                                                                     
+           SALES                                                                                                        
+           OPERATIONS                                                                                                   
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(ENAME,'N',LENGTH(ENAME)-1,1)=LENGTH(ENAME)-1 AND INSTR(DNAME,'N',LENGTH(DNAME)-1,1)=LENGTH(DNAME)-1
+SQL> /
+
+ENAME      DNAME                                                                                                        
+---------- --------------                                                                                               
+S_MITH                                                                                                                  
+ALLE_N                                                                                                                  
+WARD                                                                                                                    
+JONES                                                                                                                   
+MARTIN                                                                                                                  
+BLAKE                                                                                                                   
+CLARK                                                                                                                   
+SCOTT                                                                                                                   
+KING       ACCOUNTING                                                                                                   
+NITIN                                                                                                                   
+ADAMS                                                                                                                   
+JAMES_                                                                                                                  
+ford                                                                                                                    
+MILLER                                                                                                                  
+           RESEARCH                                                                                                     
+           SALES                                                                                                        
+           OPERATIONS                                                                                                   
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,HIREDATE,DEPTNO,DNAME AND LOC OF ALL EMP WHO ARE WORKING AS ANALYST,CLERK,SALESMAN AND PRESIDENT WHERE THEY ARE EARNING IN THE RANGE OF 1000 TO 4000 WITH NO COMM USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE      DEPTNO DNAME          LOC                                                            
+---------- --------- --------- ---------- -------------- -------------                                                  
+S_MITH     CLERK     17-DEC-80         20                                                                               
+ALLE_N     SALESMAN  20-FEB-81         30                                                                               
+WARD       SALESMAN  22-FEB-81         30                                                                               
+JONES      MANAGER   02-APR-81         20                                                                               
+MARTIN     SALESMAN  28-SEP-81         30                                                                               
+BLAKE      MANAGER   01-MAY-81         30                                                                               
+CLARK      MANAGER   09-JUN-81         10                                                                               
+SCOTT      ANALYST   19-APR-87         20 RESEARCH       DALLAS                                                         
+KING       PRESIDENT 17-NOV-81         10                                                                               
+NITIN      SALESMAN  08-SEP-81         30                                                                               
+ADAMS      CLERK     23-MAY-87         20 RESEARCH       DALLAS                                                         
+JAMES_     CLERK     03-DEC-81         30                                                                               
+ford       ANALYST   03-DEC-81         20 RESEARCH       DALLAS                                                         
+MILLER     CLERK     23-JAN-82         10 ACCOUNTING     NE_W YORK                                                      
+                                          SALES          CHICAGO                                                        
+                                          OPERATIONS     BOSTON                                                         
+
+16 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE      DEPTNO DNAME          LOC                                                            
+---------- --------- --------- ---------- -------------- -------------                                                  
+MILLER     CLERK     23-JAN-82         10 ACCOUNTING     NE_W YORK                                                      
+SCOTT      ANALYST   19-APR-87         20 RESEARCH       DALLAS                                                         
+ADAMS      CLERK     23-MAY-87         20 RESEARCH       DALLAS                                                         
+ford       ANALYST   03-DEC-81         20 RESEARCH       DALLAS                                                         
+                                          SALES          CHICAGO                                                        
+                                          OPERATIONS     BOSTON                                                         
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','SALESMAN','ANALYST','PRESIDENT') AND EMP.SAL BETWEEN 1000 AND 4000 AND COMM IS NULL
+SQL> /
+
+ENAME      JOB       HIREDATE      DEPTNO DNAME          LOC                                                            
+---------- --------- --------- ---------- -------------- -------------                                                  
+S_MITH     CLERK     17-DEC-80         20                                                                               
+ALLE_N     SALESMAN  20-FEB-81         30                                                                               
+WARD       SALESMAN  22-FEB-81         30                                                                               
+JONES      MANAGER   02-APR-81         20                                                                               
+MARTIN     SALESMAN  28-SEP-81         30                                                                               
+BLAKE      MANAGER   01-MAY-81         30                                                                               
+CLARK      MANAGER   09-JUN-81         10                                                                               
+SCOTT      ANALYST   19-APR-87         20 RESEARCH       DALLAS                                                         
+KING       PRESIDENT 17-NOV-81         10                                                                               
+NITIN      SALESMAN  08-SEP-81         30                                                                               
+ADAMS      CLERK     23-MAY-87         20 RESEARCH       DALLAS                                                         
+JAMES_     CLERK     03-DEC-81         30                                                                               
+ford       ANALYST   03-DEC-81         20 RESEARCH       DALLAS                                                         
+MILLER     CLERK     23-JAN-82         10 ACCOUNTING     NE_W YORK                                                      
+
+14 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,JOB,SAL,ANNUAL SALARY AND DNAME OF ALL EMP WHERE EMP EARNING MORE THAN10000 PER YEAR WHO ARE NOT CLERK USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.SAL*12ANNUAL_SAL,DEPT.DNAME
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB<>'CLERK' AND EMP.SAL*12>10000
+SQL> /
+
+ENAME      JOB              SAL ANNUAL_SAL DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+S_MITH     CLERK            800       9600                                                                              
+ALLE_N     SALESMAN        1600      19200 SALES                                                                        
+WARD       SALESMAN        1250      15000 SALES                                                                        
+JONES      MANAGER         2975      35700 RESEARCH                                                                     
+MARTIN     SALESMAN        1250      15000 SALES                                                                        
+BLAKE      MANAGER         2850      34200 SALES                                                                        
+CLARK      MANAGER         2450      29400 ACCOUNTING                                                                   
+SCOTT      ANALYST         3000      36000 RESEARCH                                                                     
+KING       PRESIDENT       5000      60000 ACCOUNTING                                                                   
+NITIN      SALESMAN        1500      18000 SALES                                                                        
+ADAMS      CLERK           1100      13200                                                                              
+JAMES_     CLERK            950      11400                                                                              
+ford       ANALYST         3000      36000 RESEARCH                                                                     
+MILLER     CLERK           1300      15600                                                                              
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.SAL*12ANNUAL_SAL,DEPT.DNAME
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB<>'CLERK' AND EMP.SAL*12>10000
+SQL> /
+
+ENAME      JOB              SAL ANNUAL_SAL DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+KING       PRESIDENT       5000      60000 ACCOUNTING                                                                   
+CLARK      MANAGER         2450      29400 ACCOUNTING                                                                   
+JONES      MANAGER         2975      35700 RESEARCH                                                                     
+SCOTT      ANALYST         3000      36000 RESEARCH                                                                     
+ford       ANALYST         3000      36000 RESEARCH                                                                     
+NITIN      SALESMAN        1500      18000 SALES                                                                        
+MARTIN     SALESMAN        1250      15000 SALES                                                                        
+WARD       SALESMAN        1250      15000 SALES                                                                        
+ALLE_N     SALESMAN        1600      19200 SALES                                                                        
+BLAKE      MANAGER         2850      34200 SALES                                                                        
+                                           OPERATIONS                                                                   
+
+11 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.SAL,EMP.SAL*12ANNUAL_SAL,DEPT.DNAME
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB<>'CLERK' AND EMP.SAL*12>10000
+SQL> /
+
+ENAME      JOB              SAL ANNUAL_SAL DNAME                                                                        
+---------- --------- ---------- ---------- --------------                                                               
+S_MITH     CLERK            800       9600                                                                              
+ALLE_N     SALESMAN        1600      19200 SALES                                                                        
+WARD       SALESMAN        1250      15000 SALES                                                                        
+JONES      MANAGER         2975      35700 RESEARCH                                                                     
+MARTIN     SALESMAN        1250      15000 SALES                                                                        
+BLAKE      MANAGER         2850      34200 SALES                                                                        
+CLARK      MANAGER         2450      29400 ACCOUNTING                                                                   
+SCOTT      ANALYST         3000      36000 RESEARCH                                                                     
+KING       PRESIDENT       5000      60000 ACCOUNTING                                                                   
+NITIN      SALESMAN        1500      18000 SALES                                                                        
+ADAMS      CLERK           1100      13200                                                                              
+JAMES_     CLERK            950      11400                                                                              
+ford       ANALYST         3000      36000 RESEARCH                                                                     
+MILLER     CLERK           1300      15600                                                                              
+                                           OPERATIONS                                                                   
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME,DEPTNO AND MONTHLY SAL(SAL+COMM) OF ALL EMP USING ALL OUTER JOIN.
+SQL> SELECT EMP.ENAME,EMP.DEPTNO,NVL(EMP.SAL+EMP.COMM,EMP.SAL)MONTHLY_SAL
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3  ON EMP.DEPTNO=DEPT.DEPTNO;
+
+ENAME          DEPTNO MONTHLY_SAL                                                                                       
+---------- ---------- -----------                                                                                       
+S_MITH             20         800                                                                                       
+ALLE_N             30        1900                                                                                       
+WARD               30        1750                                                                                       
+JONES              20        2975                                                                                       
+MARTIN             30        2650                                                                                       
+BLAKE              30        2850                                                                                       
+CLARK              10        2450                                                                                       
+SCOTT              20        3000                                                                                       
+KING               10        5000                                                                                       
+NITIN              30        1500                                                                                       
+ADAMS              20        1100                                                                                       
+JAMES_             30         950                                                                                       
+ford               20        3000                                                                                       
+MILLER             10        1300                                                                                       
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.DEPTNO,NVL(EMP.SAL+EMP.COMM,EMP.SAL)MONTHLY_SAL
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME          DEPTNO MONTHLY_SAL                                                                                       
+---------- ---------- -----------                                                                                       
+S_MITH             20         800                                                                                       
+ALLE_N             30        1900                                                                                       
+WARD               30        1750                                                                                       
+JONES              20        2975                                                                                       
+MARTIN             30        2650                                                                                       
+BLAKE              30        2850                                                                                       
+CLARK              10        2450                                                                                       
+SCOTT              20        3000                                                                                       
+KING               10        5000                                                                                       
+NITIN              30        1500                                                                                       
+ADAMS              20        1100                                                                                       
+JAMES_             30         950                                                                                       
+ford               20        3000                                                                                       
+MILLER             10        1300                                                                                       
+                                                                                                                        
+
+15 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.DEPTNO,NVL(EMP.SAL+EMP.COMM,EMP.SAL)MONTHLY_SAL
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO
+SQL> /
+
+ENAME          DEPTNO MONTHLY_SAL                                                                                       
+---------- ---------- -----------                                                                                       
+S_MITH             20         800                                                                                       
+ALLE_N             30        1900                                                                                       
+WARD               30        1750                                                                                       
+JONES              20        2975                                                                                       
+MARTIN             30        2650                                                                                       
+BLAKE              30        2850                                                                                       
+CLARK              10        2450                                                                                       
+SCOTT              20        3000                                                                                       
+KING               10        5000                                                                                       
+NITIN              30        1500                                                                                       
+ADAMS              20        1100                                                                                       
+JAMES_             30         950                                                                                       
+ford               20        3000                                                                                       
+MILLER             10        1300                                                                                       
+                                                                                                                        
+
+15 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY EMPNO,ENAME,HIREDATE AND LOC OF ALL EMP WHERE THE DNAME CONSIST OF EXCATLY ONE 'O' AND ENAME CONSIST OF ATLEAST ONE 'A' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.EMPNO,EMP.ENAME,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'O')>0 AND NOT INSTR(DNAME,'O',1,2)>0 AND INSTR(ENAME,'A')>0
+SQL> /
+
+     EMPNO ENAME      HIREDATE  LOC                                                                                     
+---------- ---------- --------- -------------                                                                           
+      7369 S_MITH     17-DEC-80                                                                                         
+      7499 ALLE_N     20-FEB-81                                                                                         
+      7521 WARD       22-FEB-81                                                                                         
+      7566 JONES      02-APR-81                                                                                         
+      7654 MARTIN     28-SEP-81                                                                                         
+      7698 BLAKE      01-MAY-81                                                                                         
+      7782 CLARK      09-JUN-81 NE_W YORK                                                                               
+      7788 SCOTT      19-APR-87                                                                                         
+      7839 KING       17-NOV-81                                                                                         
+      7844 NITIN      08-SEP-81                                                                                         
+      7876 ADAMS      23-MAY-87                                                                                         
+      7900 JAMES_     03-DEC-81                                                                                         
+      7902 ford       03-DEC-81                                                                                         
+      7934 MILLER     23-JAN-82                                                                                         
+                                DALLAS                                                                                  
+                                CHICAGO                                                                                 
+                                BOSTON                                                                                  
+
+17 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.EMPNO,EMP.ENAME,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'O')>0 AND NOT INSTR(DNAME,'O',1,2)>0 AND INSTR(ENAME,'A')>0
+SQL> /
+
+     EMPNO ENAME      HIREDATE  LOC                                                                                     
+---------- ---------- --------- -------------                                                                           
+      7369 S_MITH     17-DEC-80                                                                                         
+      7499 ALLE_N     20-FEB-81                                                                                         
+      7521 WARD       22-FEB-81                                                                                         
+      7566 JONES      02-APR-81                                                                                         
+      7654 MARTIN     28-SEP-81                                                                                         
+      7698 BLAKE      01-MAY-81                                                                                         
+      7782 CLARK      09-JUN-81 NE_W YORK                                                                               
+      7788 SCOTT      19-APR-87                                                                                         
+      7839 KING       17-NOV-81                                                                                         
+      7844 NITIN      08-SEP-81                                                                                         
+      7876 ADAMS      23-MAY-87                                                                                         
+      7900 JAMES_     03-DEC-81                                                                                         
+      7902 ford       03-DEC-81                                                                                         
+      7934 MILLER     23-JAN-82                                                                                         
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.EMPNO,EMP.ENAME,EMP.HIREDATE,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(DNAME,'O')>0 AND NOT INSTR(DNAME,'O',1,2)>0 AND INSTR(ENAME,'A')>0
+SQL> /.
+
+     EMPNO ENAME      HIREDATE  LOC                                                                                     
+---------- ---------- --------- -------------                                                                           
+      7369 S_MITH     17-DEC-80                                                                                         
+      7499 ALLE_N     20-FEB-81                                                                                         
+      7521 WARD       22-FEB-81                                                                                         
+      7566 JONES      02-APR-81                                                                                         
+      7654 MARTIN     28-SEP-81                                                                                         
+      7698 BLAKE      01-MAY-81                                                                                         
+      7782 CLARK      09-JUN-81 NE_W YORK                                                                               
+      7788 SCOTT      19-APR-87                                                                                         
+      7839 KING       17-NOV-81                                                                                         
+      7844 NITIN      08-SEP-81                                                                                         
+      7876 ADAMS      23-MAY-87                                                                                         
+      7900 JAMES_     03-DEC-81                                                                                         
+      7902 ford       03-DEC-81                                                                                         
+      7934 MILLER     23-JAN-82                                                                                         
+                                DALLAS                                                                                  
+                                CHICAGO                                                                                 
+                                BOSTON                                                                                  
+
+17 rows selected.
+
+SQL> --Q)WAQ TO DISPLAY ENAME AND JOB OF ALL EMP WHOSE LOC CONSIST OF TWO CONJUGATIVE 'LL' USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'LL')>0
+SQL> /
+
+ENAME      JOB                                                                                                          
+---------- ---------                                                                                                    
+S_MITH     CLERK                                                                                                        
+ALLE_N     SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST                                                                                                      
+KING       PRESIDENT                                                                                                    
+NITIN      SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES_     CLERK                                                                                                        
+ford       ANALYST                                                                                                      
+MILLER     CLERK                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+
+17 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'LL')>0
+SQL> /
+
+ENAME      JOB                                                                                                          
+---------- ---------                                                                                                    
+S_MITH     CLERK                                                                                                        
+ALLE_N     SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST                                                                                                      
+KING       PRESIDENT                                                                                                    
+NITIN      SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES_     CLERK                                                                                                        
+ford       ANALYST                                                                                                      
+MILLER     CLERK                                                                                                        
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'LL')>0
+SQL> /
+
+ENAME      JOB                                                                                                          
+---------- ---------                                                                                                    
+                                                                                                                        
+S_MITH     CLERK                                                                                                        
+JONES      MANAGER                                                                                                      
+SCOTT      ANALYST                                                                                                      
+ADAMS      CLERK                                                                                                        
+ford       ANALYST                                                                                                      
+                                                                                                                        
+                                                                                                                        
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND INSTR(LOC,'LL')>0
+SQL> /
+
+ENAME      JOB                                                                                                          
+---------- ---------                                                                                                    
+S_MITH     CLERK                                                                                                        
+ALLE_N     SALESMAN                                                                                                     
+WARD       SALESMAN                                                                                                     
+JONES      MANAGER                                                                                                      
+MARTIN     SALESMAN                                                                                                     
+BLAKE      MANAGER                                                                                                      
+CLARK      MANAGER                                                                                                      
+SCOTT      ANALYST                                                                                                      
+KING       PRESIDENT                                                                                                    
+NITIN      SALESMAN                                                                                                     
+ADAMS      CLERK                                                                                                        
+JAMES_     CLERK                                                                                                        
+ford       ANALYST                                                                                                      
+MILLER     CLERK                                                                                                        
+
+14 rows selected.
+
+SQL> --Q)WAQ TO LIST ALL ENAME,JOB,HIREDATE,SAL,COMM,DEPTNO,DNAME AND LOC WHERE ENAME CONSIST OF ATLEAST ONE 'A' AND WORKING AS ANALYST,CLERK,MANAGER AND PRESIDENT AND EARNING IN THE RANGE OF 1000 TO 5000 WITH NO COMM IN DEPTNO 10,20,30 USING ALL OUTER JOIN.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP LEFT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','ANALYST','MANAGER','PRESIDENT') AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1 AND EMP.SAL BETWEEN 1000 AND 5000 AND EMP.COMM IS NULL AND EMP.DEPTNO IN(10,20,30)
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+S_MITH     CLERK     17-DEC-80        800                    20                                                         
+ALLE_N     SALESMAN  20-FEB-81       1600        300         30                                                         
+WARD       SALESMAN  22-FEB-81       1250        500         30                                                         
+JONES      MANAGER   02-APR-81       2975                    20 RESEARCH       DALLAS                                   
+MARTIN     SALESMAN  28-SEP-81       1250       1400         30                                                         
+BLAKE      MANAGER   01-MAY-81       2850                    30 SALES          CHICAGO                                  
+CLARK      MANAGER   09-JUN-81       2450                    10 ACCOUNTING     NE_W YORK                                
+SCOTT      ANALYST   19-APR-87       3000                    20                                                         
+KING       PRESIDENT 17-NOV-81       5000                    10 ACCOUNTING     NE_W YORK                                
+NITIN      SALESMAN  08-SEP-81       1500          0         30                                                         
+ADAMS      CLERK     23-MAY-87       1100                    20                                                         
+JAMES_     CLERK     03-DEC-81        950                    30                                                         
+ford       ANALYST   03-DEC-81       3000                    20 RESEARCH       DALLAS                                   
+MILLER     CLERK     23-JAN-82       1300                    10                                                         
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP RIGHT OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','ANALYST','MANAGER','PRESIDENT') AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1 AND EMP.SAL BETWEEN 1000 AND 5000 AND EMP.COMM IS NULL AND EMP.DEPTNO IN(10,20,30)
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+CLARK      MANAGER   09-JUN-81       2450                    10 ACCOUNTING     NE_W YORK                                
+KING       PRESIDENT 17-NOV-81       5000                    10 ACCOUNTING     NE_W YORK                                
+JONES      MANAGER   02-APR-81       2975                    20 RESEARCH       DALLAS                                   
+ford       ANALYST   03-DEC-81       3000                    20 RESEARCH       DALLAS                                   
+BLAKE      MANAGER   01-MAY-81       2850                    30 SALES          CHICAGO                                  
+                                                                OPERATIONS     BOSTON                                   
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT EMP.ENAME,EMP.JOB,EMP.HIREDATE,EMP.SAL,EMP.COMM,EMP.DEPTNO,DEPT.DNAME,DEPT.LOC
+  2  FROM EMP FULL OUTER JOIN DEPT
+  3* ON EMP.DEPTNO=DEPT.DEPTNO AND EMP.JOB IN('CLERK','ANALYST','MANAGER','PRESIDENT') AND INSTR(HIREDATE,'81',LENGTH(HIREDATE)-1,1)=LENGTH(HIREDATE)-1 AND EMP.SAL BETWEEN 1000 AND 5000 AND EMP.COMM IS NULL AND EMP.DEPTNO IN(10,20,30)
+SQL> /
+
+ENAME      JOB       HIREDATE         SAL       COMM     DEPTNO DNAME          LOC                                      
+---------- --------- --------- ---------- ---------- ---------- -------------- -------------                            
+S_MITH     CLERK     17-DEC-80        800                    20                                                         
+ALLE_N     SALESMAN  20-FEB-81       1600        300         30                                                         
+WARD       SALESMAN  22-FEB-81       1250        500         30                                                         
+JONES      MANAGER   02-APR-81       2975                    20 RESEARCH       DALLAS                                   
+MARTIN     SALESMAN  28-SEP-81       1250       1400         30                                                         
+BLAKE      MANAGER   01-MAY-81       2850                    30 SALES          CHICAGO                                  
+CLARK      MANAGER   09-JUN-81       2450                    10 ACCOUNTING     NE_W YORK                                
+SCOTT      ANALYST   19-APR-87       3000                    20                                                         
+KING       PRESIDENT 17-NOV-81       5000                    10 ACCOUNTING     NE_W YORK                                
+NITIN      SALESMAN  08-SEP-81       1500          0         30                                                         
+ADAMS      CLERK     23-MAY-87       1100                    20                                                         
+JAMES_     CLERK     03-DEC-81        950                    30                                                         
+ford       ANALYST   03-DEC-81       3000                    20 RESEARCH       DALLAS                                   
+MILLER     CLERK     23-JAN-82       1300                    10                                                         
+                                                                OPERATIONS     BOSTON                                   
+
+15 rows selected.
+
+SQL> SPOOL OFF
