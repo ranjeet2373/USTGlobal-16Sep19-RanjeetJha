@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;marks&apos; in &apos;com.ustglobal.streams.list.SortedUsingStream.main(...)&apos; to &apos;al&apos;&#x0D;&#x0A;- Original project: &apos;streams&apos;&#x0D;&#x0A;- Original element: &apos;com.ustglobal.streams.list.SortedUsingStream.main(String[]).marks&apos;&#x0D;&#x0A;- Renamed element: &apos;marks&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;marks&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.ustglobal.streams.list{SortedUsingStream.java[SortedUsingStream~main~\[QString;@marks!149!193!168!172!QArrayList\&lt;QInteger;&gt;;!0!false" name="al" references="true" stamp="1572955141154" version="1.0"/>
+</session>

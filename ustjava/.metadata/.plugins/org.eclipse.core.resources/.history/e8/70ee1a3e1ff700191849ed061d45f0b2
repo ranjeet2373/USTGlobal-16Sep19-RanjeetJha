@@ -1,0 +1,26 @@
+package com.ustglobal.beanobject.bean;
+
+import java.util.Scanner;
+
+public class TestB {
+	public static void main(String[] args) {
+		System.out.println("Scanner class");
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter age");
+		int age = sc.nextInt();
+		System.out.println("age is "+age);
+		
+		
+		
+		System.out.println("enter ur salary");
+		double sal = sc.nextDouble();
+		System.out.println("ur salary "+sal+" debited in ur account ");
+		
+		System.out.println("enter ur name");
+		String name = sc.nextLine();
+		System.out.println("ur name is "+name);
+		
+	}
+
+}

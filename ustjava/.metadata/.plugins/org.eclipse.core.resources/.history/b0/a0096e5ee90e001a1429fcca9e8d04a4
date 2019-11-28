@@ -1,0 +1,24 @@
+package revision;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class List1 {
+	
+	public static void main(String[] args) {
+		
+		List l = new ArrayList();
+		
+		l.add(20);
+		l.add(20.5);
+		l.add("ranjeet");
+		l.add(null);
+		l.add(null);
+		l.add("ranjeet");
+		
+		System.out.println(l);
+		Object o = l.get(3);
+		
+	}
+
+}

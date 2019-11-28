@@ -1,0 +1,13 @@
+public class TestB {
+	public static void main(String[] args) {
+		String jobs[] = {"hr","clerk","developer"};
+		recieve(jobs);
+	}
+	
+	static void recieve(String job[]) {
+		for(int i=0;i<job.length;i++) {
+			System.out.println(job[i]);
+		}
+	}
+
+}

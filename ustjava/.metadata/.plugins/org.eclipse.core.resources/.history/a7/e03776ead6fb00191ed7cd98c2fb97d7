@@ -1,0 +1,16 @@
+package com.ustglobal.exception.customiseCheckedException;
+
+public class MainCheckedCustom {
+	public static void main(String[] args) {
+		System.out.println("main started");
+		
+		Validator v = new Validator();
+		try {
+			v.checkAmount(20000);
+			System.out.println("withdraw ur cash");
+		}catch(InvalidAmountException ie) {
+			System.err.println(ie.getMessage());
+		}
+	}
+
+}

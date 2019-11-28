@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.ustglobal.LinkedList.method.Stack&apos; to &apos;MethodOfStack&apos;&#x0D;&#x0A;- Original project: &apos;MethodOfLinkedList&apos;&#x0D;&#x0A;- Original element: &apos;com.ustglobal.LinkedList.method.Stack&apos;&#x0D;&#x0A;- Renamed element: &apos;com.ustglobal.LinkedList.method.MethodOfStack&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Stack&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.ustglobal.LinkedList.method{Stack.java[Stack" matchStrategy="1" name="MethodOfStack" qualified="false" references="true" similarDeclarations="false" stamp="1572854899301" textual="false" version="1.0"/>
+</session>

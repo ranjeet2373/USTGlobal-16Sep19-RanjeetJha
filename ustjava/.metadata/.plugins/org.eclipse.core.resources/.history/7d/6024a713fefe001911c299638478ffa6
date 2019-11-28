@@ -1,0 +1,31 @@
+package com.ustglobal.sorting.set;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class MainCustomer {
+	
+	public static void main(String[] args) {
+		
+		HashSet<Customer> hs = new HashSet<>();
+		Customer c1 = new Customer("Amrit", 1, 25000);
+		Customer c2 = new Customer("kirti", 10, 5000);
+		Customer c3 = new Customer("rahul", 5, 35000);
+		Customer c4 = new Customer("bablu", 2, 45000);
+		hs.add(c1);
+		hs.add(c2);
+		hs.add(c3);
+		hs.add(c4);
+		
+		System.out.println("******using Iterator********");
+		Iterator<Customer> i =hs.iterator();
+		while(i.hasNext()) {
+			Customer c = i.next();
+			System.out.println("name is "+c.name);
+			System.out.println("id is "+c.id);
+			System.out.println("salary is "+c.salary);
+			System.out.println("*******************");
+		}
+	}
+
+}

@@ -1,0 +1,38 @@
+package com.ustglobal.sorting.set;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeSet;
+
+public class MainCustomer {
+	
+	public static void main(String[] args) {
+		
+		SortByEmpName se = new SortByEmpName();
+		
+		
+		TreeSet<Customer> ts = new TreeSet<>(se);
+		Customer c1 = new Customer("Amrit", 1, 25000);
+		Customer c2 = new Customer("kirti", 10, 5000);
+		Customer c3 = new Customer("rahul", 5, 35000);
+		Customer c4 = new Customer("bablu", 2, 45000);
+		ts.add(c1);
+		ts.add(c2);
+		ts.add(c3);
+		ts.add(c4);
+		
+		System.out.println("******using Iterator********");
+		Iterator<Customer> i =ts.iterator();
+		while(i.hasNext()) {
+			Customer c = i.next();
+			System.out.println("name is "+c.name);
+			System.out.println("id is "+c.id);
+			System.out.println("salary is "+c.salary);
+			System.out.println("*******************");
+		}
+		
+	}
+
+}

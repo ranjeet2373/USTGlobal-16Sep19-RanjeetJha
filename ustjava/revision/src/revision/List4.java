@@ -1,0 +1,56 @@
+package revision;
+
+import java.util.ArrayList;
+
+public class List4 {
+	
+	public static void main(String[] args) {
+		
+		ArrayList al = new ArrayList<>();
+		al.add(34.5);
+		al.add(23.5);
+		al.add(87.6);
+		al.add(12.3);
+		al.add(null);
+		al.add(34.5);
+		al.add(null);
+		al.add(null);
+		System.out.println(al);
+		
+		al.add(2, "ranjeet");
+		System.out.println(al);
+		
+		al.remove(1);
+		
+		System.out.println("after removing "+al);
+		
+		al.remove(null);
+		System.out.println("after removing null"+al);
+		
+		al.set(1, "rahul");
+		System.out.println("after replacing "+al);
+		
+		boolean b = al.contains("ranjeet");
+		System.out.println(b);
+		
+		Object o = al.get(4);
+		System.out.println(o);
+		
+		ArrayList<Double> al2 = new ArrayList<>();
+		al2.add(20.5);
+		al2.add(30.0);
+		al2.add(50.54);
+		
+		al.addAll(al2);
+		
+		System.out.println("after merging");
+		System.out.println(al);
+		
+		boolean res = al.removeAll(al2);
+		System.out.println(res);
+		
+		System.out.println(al);
+		
+	}
+
+}
