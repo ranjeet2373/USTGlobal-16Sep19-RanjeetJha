@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript</title>
+    <script>
+        var age=22;
+        console.log('Age='+age);
+        var name='ranjeet';
+        console.log('Name='+name);
+        var hasHobbies=true;
+        console.log('Has Hobbies= '+hasHobbies);
+        var data=null;
+        console.log('data='+data);
+        var married;
+        console.log('Married='+married);
+    </script>
+    <script src="date.js"></script>
+</head>
+<body>
+    <script>
+        var fruits=['orange','mango','apple','pineapple'];//Array
+        console.log('Fruits=',fruits);//Array print
+        console.log('Fruit1=',fruits[0]);//Pirnt index value
+        console.log('Fruit length=',fruits.length);//print length
+        var person={
+                    firstname :'Allia Bhat',
+                    lastname:'Ranbir',
+                    age:26,
+                    phoneno:1245632,
+                    getFullName:function()
+                    {
+                        return this.firstname+' '+this.lastname
+                    }
+                   }
+                   console.log(person.lastname);
+                   console.log(person.getFullName());
+                   var lastName=person.lastname;
+                   console.log('Last name='+lastName);
+
+
+
+                   var bike=new Object();
+                   bike.name='appache';
+                   bike.regno=12345;
+                   bike.colour='red';
+                   console.log('Bike Name='+bike.name);
+                   console.log('Bike Regno='+bike.regno);
+                   console.log('Bike color='+bike.colour);
+
+
+
+                   var student=new Object();
+                   student.name='Ranjeet';
+                   student.age=22;
+                   student.gender='male';
+                   console.log('Student Name='+student.name);
+                   console.log('Student Age='+student.age);
+                   console.log('student Gender='+student.gender);
+
+
+
+                   var car={
+                           name:'nano',
+                           model_no:12345,
+                           color:'black',   
+                   }
+                   console.log('Car Name='+car.name);
+                   console.log('car Model no.='+car.model_no);
+                   console.log('car colour='+car.color);
+
+
+                   var animal=['dog','tiger','lion','cat'];
+                   for(var i=0;i<animal.length;i++)
+                   {
+                       console.log(animal[i]);
+                   }
+
+                   var state=new Array('bihar','karnatka','jharkhand');
+                  
+                   console.log(state[0]);
+                   console.log(state[1]);
+                   console.log(state[2]);
+                   console.log('=======================');
+                   var a=10;
+                   var str='10';
+                   if(a===str)
+                   {
+                       console.log('equals');
+                   }
+                   else
+                   {
+                       console.log('not equals');
+                   }
+                   if(a!==str)
+                   {
+                       console.log('equals');
+                   }
+                   else
+                   {
+                       console.log('not equals');
+                   }
+                   console.log('=================');
+                   var numberValue=20;
+                   console.log(typeof numberValue);
+                   var fname='ranjeet';
+                   console.log(typeof fname);
+                   var lname=null;
+                   console.log(typeof lname);
+                   var fullname;
+                   console.log(typeof fulname);
+                   console.log(typeof person);
+    </script>
+    
+</body>
+</html>
