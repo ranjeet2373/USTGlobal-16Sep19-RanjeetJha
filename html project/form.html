@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form</title>
+    <style>
+        td
+        {
+            border-style: none;
+        }
+    </style>
+</head>
+<body >
+    <h1 align="center">REGISTRATION FORM</h1>
+    <table border="1px" align="center" cellspacing="0">
+        
+   <form action="">
+      
+          
+
+          <tr>
+              <td>Name</td>
+              <td>Gender</td>
+          </tr>
+          <tr>
+              <td><input type="text" name="name" placeholder="Enter Name" required></td>
+              <td><input type="radio" name="gender" value="male">Male</td>
+              <td><input type="radio" name="gender" value="female">Female</td>
+              <td><input type="radio" name="gender" value="other">Other</td>
+          </tr>
+          <tr>
+              <td>Email</td>
+        
+          </tr>
+          <td><input type="email" name="email" placeholder="Enter Email" required></td>
+          <td>Joining month</td>
+          <td><select>
+              <option value="0" selected disabled>select</option>
+              <option >jan</option>
+              <option >feb</option>
+              <option>march</option>
+          </select></td>
+          <tr>
+              <td>Mobile</td>
+              
+          </tr>
+          <tr>
+              <td><input type="tel" name="mobile" placeholder="Enter Mobile Number" required> </td>
+              <td><input type="checkbox" value="agree">I agree</td>
+          </tr>
+          <tr></tr>
+          <tr>
+              <td></td>
+              <td><input type="submit" onclick="alert('subbmit successfull')" name="submit"></td>
+              <td><input type="reset" name="reset"></td>
+          </tr>
+      
+    </form>
+    
+    </table>
+    
+</body>
+</html>
