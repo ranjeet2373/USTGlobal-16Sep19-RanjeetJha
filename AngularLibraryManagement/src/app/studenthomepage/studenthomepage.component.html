@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-color: black;
+  font-family: cursive;
+}
+
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+</style>
+</head>
+<body>
+
+<h1 class="glow">WELCOME TO LIBRARY</h1>
+
+
+     
+</body>
+</html> 
+<div *ngIf='isLoggedIn()'>
+<button type="button" class="btn btn-primary btn-lg" (click)='showsaerch()'>Search Book</button>
+<button type="button" class="btn btn-secondary btn-lg float-right" (click)='logout()'>Logout</button>
+</div>
+
+<form #form = 'ngForm' (ngSubmit)="getBook(form)" class="col-md-4 offset-4 mt-5 card card-body" *ngIf = "show">
+  <h1 class="text-center bg-dark text-white">Search</h1>
+  <div class="form-group">
+      <input type="number" name="bid" id="bid" class="form-control" placeholder="Enter Book id to search" #search='ngModel' ngModel>
+      <button type="submit" class="btn btn-outline-primary float-right">Search</button>
+  </div>
+</form>
+
+<div *ngIf= 'myBook !==null'>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>BOOK ID</th>
+        <th>BOOK NAME</th>
+        <th>BOOK AUTHOR</th>
+        <th>PUBLICATION</th>
+        <th>Request Book</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{myBook.bid}}</td>
+        <td>{{myBook.bname}}</td>
+        <td>{{myBook.bauthor}}</td>
+        <td>{{myBook.publication}}</td>
+        <td><button class="btn btn-success">Request Book</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

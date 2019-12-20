@@ -1,0 +1,50 @@
+<div class="alert alert-danger" *ngIf='error'>{{error}}</div>
+<form #studentform='ngForm' class="col-md-4 offset-4 mt-5 card card-body" (ngSubmit)='register(studentform)'>
+    <h2 class="text-center bg-dark text-white">Student Registration Form!!!</h2>
+
+    <div class="form-group">
+        <input type="text" #name='ngModel' ngModel name="name" id="name" class="form-control"
+            placeholder="Enter Your Name" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
+        <div *ngIf="name.touched && name.invalid">
+            <p *ngIf="name.errors.required" class="alert alert-danger">*This field is required</p>
+            <p class="alert alert-danger" *ngIf="name.errors.pattern">Enter only alphabet</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" #department='ngModel' ngModel name="department" id="department" class="form-control"
+            placeholder="Enter Your Department" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
+        <div *ngIf="department.touched && department.invalid">
+            <p *ngIf="department.errors.required" class="alert alert-danger">*This field is required</p>
+            <p class="alert alert-danger" *ngIf="department.errors.pattern">Enter only alphabet</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="password" #password='ngModel' ngModel name="password" id="password" class="form-control"
+            placeholder="Set Password" required minlength="8"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+        <div *ngIf="password.touched && password.invalid">
+            <p *ngIf="password.errors.required" class="alert alert-danger">*This field is required</p>
+            <p *ngIf="password.errors.minlength" class="alert alert-danger">*Please enter more than 8 letter</p>
+            <p class="alert alert-danger" *ngIf="password.errors.pattern">Password must contain atleast one
+                capital letter, small letter, and number.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="gender" id="gender" placeholder="Enter Your Gender" class="form-control"
+            #gender='ngModel' ngModel maxlength="1" pattern="[M;F;O;m;f;o]" required>
+        <div *ngIf="gender.errors.touched && gender.invalid">
+            <p *ngIf="gender.errors.required" class="text-danger">*this field is required</p>
+            <p *ngIf="gender.errors.maxlength" class="text-danger">*enter Gender only one character F or M</p>
+            <p *ngIf="!gender.errors?.pattern" class="text-danger">*enter Gender only one character F or M</p>
+        </div>
+
+    </div>
+
+    <div class="form-group ">
+        <input type="submit" class="btn btn-success float-right" [disabled]="studentform.invalid" value="Register">
+    </div>
+</form>
