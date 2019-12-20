@@ -13,7 +13,7 @@ export class GetAllComponent implements OnInit {
   selectedProduct;
   message;
   constructor(private service: ProductService, private route: Router) {
-    this.getAll();
+    
   }
 
   ngOnInit() {
@@ -42,15 +42,6 @@ export class GetAllComponent implements OnInit {
     console.log(product);
     this.selectedProduct = product;
   }
-  getAll() {
-    this.service.getAllProducts().subscribe( data =>{
-      console.log(data.bean);
-      this.products = data.bean;
-    }, err=>{
-      console.log('error');
-    }, () => {
-      console.log('success')
-    });
-  }
+  
 
 }
