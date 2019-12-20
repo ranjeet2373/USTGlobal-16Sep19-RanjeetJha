@@ -1,0 +1,9 @@
+package com.ustglobal.hibernateMapping.onetoone;
+
+public class Employee_info {
+	
+	private int id;
+	private String name;
+	private String email;
+
+}

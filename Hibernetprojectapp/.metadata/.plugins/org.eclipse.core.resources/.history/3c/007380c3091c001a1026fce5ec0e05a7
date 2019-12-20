@@ -1,0 +1,20 @@
+package com.ustglobal.hibernateMapping;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	EntityManager manager=null;
+    	EntityTransaction transaction = null;
+    	try {
+    		
+    	}catch (Exception e) {
+    		e.printStackTrace();
+		}
+    	
+    	
+    }
+}

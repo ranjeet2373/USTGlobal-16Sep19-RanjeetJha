@@ -1,0 +1,5 @@
+package com.ustglobal.hibernateMapping.onetoone;
+
+public class Employee_other_info {
+
+}
